@@ -36,10 +36,14 @@ new Promise(function (resolve) {
 }).catch(function (e) {
     alert('Ошибка ' + e.message);
 }).then(function(response) {
+    var source   = entrytemplate.innerHTML;
+    var template = Handlebars.compile(source);
+    var outHtml;
     response.forEach(function(friend) {
-        console.log(friend);
-    })
 
+        outHtml = outHtml + template(friend)
+;    })
+    friends_group.innerHTML = outHtml;
 }).catch(function (e) {
     alert('Ошибка ' + e.message);
 });
